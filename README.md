@@ -1,4 +1,5 @@
 Supported devices.
+Tested on Google Pixel 3 XL emulator.
 
 Supported features
 1) Retrieve songs
