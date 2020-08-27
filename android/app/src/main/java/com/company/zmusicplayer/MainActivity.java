@@ -1,4 +1,4 @@
-package com.example.music_app;
+package com.company.zmusicplayer;
 
 import android.os.Bundle;
 
