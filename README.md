@@ -1,4 +1,4 @@
-Z Music Player App (In Progress)
+Z Music Player App (In Progress)\n
 This app is made in Flutter using Provider & Bloc design pattern and Android device is supported.
 
 The latest version of the app :
