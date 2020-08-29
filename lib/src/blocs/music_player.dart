@@ -42,7 +42,8 @@ class ZMusicPlayerBloc {
   }
 
   Future<void> fetchSongs() async {
-    await AppleMusicStore.instance.fetchResultsByQuery("Jack Johanson").then(
+    AppleMusicStore store = new AppleMusicStore();
+    await store.fetchResultsByQuery("Jack Johanson").then(
       (data) {
         _songs$.add(data);
       },
@@ -156,7 +157,8 @@ class ZMusicPlayerBloc {
   Future<void> saveFavorites() async {}
 
   void retrieveFavorites() async {
-    await AppleMusicStore.instance.fetchResultsByQuery("Jack Johanson").then(
+    AppleMusicStore store = new AppleMusicStore();
+    await store.fetchResultsByQuery("Jack Johanson").then(
       (data) {
         _favorites$.add(data);
       },
