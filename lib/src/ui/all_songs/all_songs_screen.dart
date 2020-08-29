@@ -46,41 +46,14 @@ class AllSongsScreen extends StatelessWidget {
                   if (!snapshot.hasData) {
                     return Container();
                   }
+
                   final PlayerState _state = snapshot.data.key;
                   final Results _currentSong = snapshot.data.value;
                   final bool _isSelectedSong = _currentSong == _songs[index];
+
                   return GestureDetector(
                     onTap: () {
-                      _globalBloc.musicPlayerBloc.updatePlaylist(_songs);
-                      switch (_state) {
-                        case PlayerState.playing:
-                          if (_isSelectedSong) {
-                            _globalBloc.musicPlayerBloc
-                                .pauseMusic(_currentSong);
-                          } else {
-                            _globalBloc.musicPlayerBloc.stopMusic();
-                            _globalBloc.musicPlayerBloc.playMusic(
-                              _songs[index],
-                            );
-                          }
-                          break;
-                        case PlayerState.paused:
-                          if (_isSelectedSong) {
-                            _globalBloc.musicPlayerBloc
-                                .playMusic(_songs[index]);
-                          } else {
-                            _globalBloc.musicPlayerBloc.stopMusic();
-                            _globalBloc.musicPlayerBloc.playMusic(
-                              _songs[index],
-                            );
-                          }
-                          break;
-                        case PlayerState.stopped:
-                          _globalBloc.musicPlayerBloc.playMusic(_songs[index]);
-                          break;
-                        default:
-                          break;
-                      }
+                      _globalBloc.musicPlayerBloc.performTapAction(_state, _currentSong, _isSelectedSong, index, _songs);
                     },
                     child: ResultsTile(
                       song: _songs[index],

@@ -72,6 +72,37 @@ class ZMusicPlayerBloc {
     _position$.add(duration);
   }
 
+  void performTapAction(PlayerState state, Results currentSong, bool isSelectedSong, int index, List<Results> songs) {
+    updatePlaylist(songs);
+    switch (state) {
+      case PlayerState.playing:
+        if (isSelectedSong) {
+          pauseMusic(currentSong);
+        } else {
+          stopMusic();
+          playMusic(
+            songs[index],
+          );
+        }
+        break;
+      case PlayerState.paused:
+        if (isSelectedSong) {
+           playMusic(songs[index]);
+        } else {
+          stopMusic();
+          playMusic(
+            songs[index],
+          );
+        }
+        break;
+      case PlayerState.stopped:
+        playMusic(songs[index]);
+        break;
+      default:
+        break;
+    }
+  }
+
   void updatePlaylist(List<Results> normalPlaylist) {
     List<Results> _shufflePlaylist = []..addAll(normalPlaylist);
     _shufflePlaylist.shuffle();

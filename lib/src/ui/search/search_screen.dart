@@ -120,38 +120,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         _currentSong == _filteredSongs[index];
                     return GestureDetector(
                       onTap: () {
-                        _globalBloc.musicPlayerBloc
-                            .updatePlaylist(_filteredSongs);
-                        switch (_state) {
-                          case PlayerState.playing:
-                            if (_isSelectedSong) {
-                              _globalBloc.musicPlayerBloc
-                                  .pauseMusic(_currentSong);
-                            } else {
-                              _globalBloc.musicPlayerBloc.stopMusic();
-                              _globalBloc.musicPlayerBloc.playMusic(
-                                _filteredSongs[index],
-                              );
-                            }
-                            break;
-                          case PlayerState.paused:
-                            if (_isSelectedSong) {
-                              _globalBloc.musicPlayerBloc
-                                  .playMusic(_filteredSongs[index]);
-                            } else {
-                              _globalBloc.musicPlayerBloc.stopMusic();
-                              _globalBloc.musicPlayerBloc.playMusic(
-                                _filteredSongs[index],
-                              );
-                            }
-                            break;
-                          case PlayerState.stopped:
-                            _globalBloc.musicPlayerBloc
-                                .playMusic(_filteredSongs[index]);
-                            break;
-                          default:
-                            break;
-                        }
+                        _globalBloc.musicPlayerBloc.performTapAction(_state, _currentSong, _isSelectedSong, index, _filteredSongs);
                       },
                       child: ResultsTile(
                         song: _filteredSongs[index],
