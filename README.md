@@ -29,4 +29,4 @@ Incomplete Functionalities
 2) Albums support 
 
 Requirements to build the app
-Supported Flutter version: 1.7.8+hotfix.4 (in-progress to support for latest Flutter SDK version, need to alternative for flute_music_player dependency to support new versions)
+Supported Flutter version: 1.7.8+hotfix.4 (in-progress to support for latest Flutter SDK version, need to find alternative for flute_music_player dependency to support new versions)
